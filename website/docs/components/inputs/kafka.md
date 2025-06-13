@@ -65,8 +65,13 @@ input:
       token_key: ""
       aws:
         region: ""
+        endpoint: ""
         credentials:
           profile: ""
+          id: ""
+          secret: ""
+          token: ""
+          from_ec2_role: false
           role: ""
           role_external_id: ""
     consumer_group: ""
@@ -438,6 +443,14 @@ The AWS region to target.
 Type: `string`  
 Default: `""`  
 
+### `sasl.aws.endpoint`
+
+Allows you to specify a custom endpoint for the AWS API.
+
+
+Type: `string`  
+Default: `""`  
+
 ### `sasl.aws.credentials`
 
 Optional manual configuration of AWS credentials to use. More information can be found [in this document](/docs/guides/cloud/aws).
@@ -452,6 +465,42 @@ A profile from `~/.aws/credentials` to use.
 
 Type: `string`  
 Default: `""`  
+
+### `sasl.aws.credentials.id`
+
+The ID of credentials to use.
+
+
+Type: `string`  
+Default: `""`  
+
+### `sasl.aws.credentials.secret`
+
+The secret for the credentials being used.
+:::warning Secret
+This field contains sensitive information that usually shouldn't be added to a config directly, read our [secrets page for more info](/docs/configuration/secrets).
+:::
+
+
+Type: `string`  
+Default: `""`  
+
+### `sasl.aws.credentials.token`
+
+The token for the credentials being used, required when using short term credentials.
+
+
+Type: `string`  
+Default: `""`  
+
+### `sasl.aws.credentials.from_ec2_role`
+
+Use the credentials of a host EC2 machine configured to assume [an IAM role associated with the instance](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html).
+
+
+Type: `bool`  
+Default: `false`  
+Requires version 1.0.0 or newer  
 
 ### `sasl.aws.credentials.role`
 
